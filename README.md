@@ -1,154 +1,98 @@
-<!-- {% comment %} -->
-# What The Hack - Repo
+# Gameday - Azure Serverless
 
-Welcome to the What The Hack repo on GitHub. This repo contains Coach content designed for people planning to host a What The Hack event with students in an organization. 
+## Introduction
 
-If you are an organization that is interested in attending or hosting a What The Hack event, please visit the [What The Hack website](https://aka.ms/wth) at: **https://aka.ms/wth**
+The Azure Serverless Gameday will take you through architecting a serverless solution on Azure for the use case of a Tollbooth Application that needs to meet demand for event driven scale. This is a challenge-based hack. It's NOT step-by-step. Don't worry, you will do great whatever your level of experience! 
 
-**If you are a student attending a What The Hack event, please go to the [What The Hack website](https://aka.ms/wth).**
+You will be guided through different tasks to implement the "Tollbooth" app by leveraging a serverless architecture within Azure using a combination of Azure Functions, Logic Apps, Event Grid, Cosmos DB, and Azure Storage. The focus is on removing server management from the equation, breaking down the solution into smaller components that are individually scalable, and allowing the customer to only pay for what they use.  
 
-![What The Hack Website](/assets/images/wth-logo.png)
-<!-- {% endcomment %} -->
+The intent is to have you practice the tools, technologies and services our partners are asking you about. Let's try to go out of your comfort zone, try and learn something new. And let's have fun!
 
-# What is What The Hack?
+And don't forget there are coaches around you, just raise your hand at any time!
 
-"What the Hack" is a set of challenge based hackathons that can be hosted in-person or virtually via Microsoft Teams.
+## Learning Objectives
 
-Attendees work in squads of 3 to 5 people to solve a series of technical challenges for a given technology or solution scenario. Challenges describe high-level tasks and goals to be accomplished. Challenges are not step-by-step labs.
+In this hack, you will be solving the business problem of event driven scale for the Tollbooth Application.
 
-What The Hack is designed to be a collaborative learning experience.  Attendees "learn from" and "share with" each other. Without step-by-step instructions given for the challenges, attendees have to "figure it out" together as a team.  This results in greater knowledge retention for the attendees. 
+1. Provision an Azure Storage Blob Container to store vehicle photos.
+2. Set up Azure Functions to process the vehicle photos leveraging Event Grid.
+3. Use Cognitive Services Computer Vision API OCR to comprehend the license plate data from the vehicle photos.
+4. Store the license plate data in Azure Cosmos DB.
+5. Provision a Logic App for obtaining the stored license plate data from Cosmos DB and exporting it to a new CSV file saved to Blob storage.
+6. Use Application Insights to monitor the Azure Functions in real-time as data is being processed through the serverless architecture.
 
-The attendee squads are not alone in solving the challenges. Coaches work with each squad to provide guidance for, but not answers to, the challenges.  The coaches may also provide lectures and demos to introduce the challenges, as well as review challenge solutions throughout the event.
+## Solution Architecture
 
-# How to Host a What The Hack
+The solution begins with vehicle photos being uploaded to an Azure Storage blob storage container, as they are captured. A blob storage trigger fires on each image upload, executing the photo processing **Azure Function** endpoint (on the side of the diagram), which in turn sends the photo to the **Cognitive Services Computer Vision API OCR** service to extract the license plate data. 
 
-Would you like to host a What The Hack for your organization? The WTH format and content has been designed for hosting a hack with groups of 5 to 50 people. We welcome anyone to use the content here to host their own WTH event!
+If processing was successful and the license plate number was returned, the function submits a new Event Grid event, along with the data, to an Event Grid topic with an event type called &quot;savePlateData&quot;. However, if the processing was unsuccessful, the function submits an Event Grid event to the topic with an event type called &quot;queuePlateForManualCheckup&quot;. 
 
-See our complete guide on ["How To Host A Hack"](/000-HowToHack/WTH-HowToHostAHack.md).
+Two separate functions are configured to trigger when new events are added to the Event Grid topic, each filtering on a specific event type, both saving the relevant data to the appropriate **Azure Cosmos DB** collection for the outcome, using the Cosmos DB output binding. 
 
-# How to Contribute to What The Hack
+A **Logic App** that runs on a 15-minute interval executes an Azure Function via its HTTP trigger, which is responsible for obtaining new license plate data from Cosmos DB and exporting it to a new CSV file saved to Blob storage. If no new license plate records are found to export, the Logic App sends an email notification to the Customer Service department via their Office 365 subscription. 
 
-What The Hack is community driven. Here are our core principles:
-- Anyone can [contribute a new hack](./CONTRIBUTING.md).
-- Anyone can use the content to [host their own WTH event](./000-HowToHack/WTH-HowToHostAHack.md).
-- Anyone can modify or update a hack as needed.
-  - Contributing updates back via a [pull request](./CONTRIBUTING.md) is encouraged.
-- The content can always be shared with hack attendees **(Only do this after the event is over!)**
+**Application Insights** is used to monitor all of the Azure Functions in real-time as data is being processed through the serverless architecture. This real-time monitoring allows you to observe dynamic scaling first-hand and configure alerts when certain events take place.
 
-Would you like to contribute to What The Hack?  We welcome new hacks and updates to existing hacks!  We have developed a process for doing this.  
+Below is a diagram of the solution architecture you will build in this hack. Please study this carefully, so you understand the whole of the solution as you are working on the various components.
 
-See our [What The Hack Contribution Guide](./CONTRIBUTING.md) to learn about the contribution and review process.
+![The Solution diagram is described in the text following this diagram.](images/preferred-solution.png 'Solution diagram')
 
-# How to Author a What The Hack
 
-What makes a good hack? We have a guide that helps answer that question!
+## Technologies
 
-Hacks can focus on a single technology or focus on a solution scenario that features multiple technologies working together to solve a business problem.
+Azure services and related products leveraged to create this one possible solution architecture are:
+*	Azure Functions
+*	Azure Cognitive Services
+*	Azure Event Grid
+*	Application Insights
+*	Azure Cosmos DB
+*	Azure Key Vault
+*	Logic Apps
 
-Read our [What The Hack Author's Guide](/000-HowToHack/WTH-HowToAuthorAHack.md) for details on how to author a hack. The author's guide contains a set of markdown template files that help you quickly create new hack content that is consistent with the WTH format.
+## Azure Solution Architecture
+This one possible Cloud Solution Architecture classifies under the **Application Modernization** category.
 
-# The What The Hack Collection
+## Challenges
 
-Here is the current list of What The Hack hackathons available in this repository:
+- Challenge 01: **[Setup](Student/Challenge-01.md)**
+	 - Prepare your workstation to develop your Serverless Solution
+- Challenge 02: **[Create a Hello World Function](Student/Challenge-02.md)**
+	 - Create your first "Hello World" Azure Function in Visual Studio Code
+- Challenge 03: **[Create Resources](Student/Challenge-03.md)**
+	 - Provision the basic resources in Azure to prepare your deployment ground
+- Challenge 04: **[Configuration](Student/Challenge-04.md)**
+	 - Configure application settings on the Microsoft Azure Portal and update the TollBooth application code
+- Challenge 05: **[Deployment](Student/Challenge-05.md)**
+	 - Deploy the Tollbooth project to the "App" in the Azure Portal Function App and configure the Event Grid
+- Challenge 06: **[Create Functions in the Portal](Student/Challenge-06.md)**
+	 - Create the event triggered functions in the Azure Portal to respond to Event Grid Topics
+- Challenge 07: **[Monitoring](Student/Challenge-07.md)**
+	 - Configure application monitoring with Application Insights Resource on Azure Portal
+- Challenge 08: **[Data Export Workflow](Student/Challenge-08.md)**
+	 - Deploy a Logic App to periodically export the license plate data and conditionally send an email
 
-## Infrastructure
-- [Intro To Kubernetes](/001-IntroToKubernetes/README.md)
-- [Advanced Kubernetes](/023-AdvancedKubernetes/README.md)
-- [AKS Enterprise-Grade](/039-AKSEnterpriseGrade/README.md)
-- [Azure Arc Enabled Kubernetes](/026-ArcEnabledKubernetes/readme.md)
-- [Azure Arc enabled servers](/025-ArcEnabledServers/readme.md)
-- [Infrastructure As Code: Bicep](/045-InfraAsCode-Bicep/README.md)
-- [Infrastructure As Code: ARM & DSC](/011-InfraAsCode-ARM-DSC/readme.md)
-- [Infrastructure As Code: Terraform](/012-InfraAsCode-Terraform/Student/readme.md)
-- [Infrastructure As Code: Ansible](/013-InfraAsCode-Ansible/Student/readme.md)
-- [Azure Front Door](/017-FrontDoor/README.md)
-- [Advanced Networking](/028-AdvancedNetworking/README.md)
-- [Azure Networking with Hub & Spoke](/035-HubAndSpoke/README.md)
-- [Using BGP Networking for Hybrid Connectivity](/036-BGP/README.md)
-- [Azure Virtual WAN](/041-VirtualWAN/README.md)
-- [Azure Route Server](/057-AzureRouteServer/README.md)
-- [Azure Governance](/022-AzureGovernance/README.md)
-- [Linux Fundamentals](/020-LinuxFundamentals/README.md)
-- [Azure Virtual Desktop](/037-AzureVirtualDesktop/README.md)
-- [SAP On Azure](/042-SAPOnAzure/README.md)
+## Optional Challenges
+- Challenge 07A: **[Scale the Cognitive Service](Student/Challenge-07A.md)**
+	 - Witness the dynamic scaling of the Function App demonstrating the true Serverless behaviour
+- Challenge 07B: **[View Data in Cosmos DB](Student/Challenge-07B.md)**
+	 - Use the Azure Cosmos DB Data Explorer in the portal to view saved license plate data
 
-## Application Development
-- [Java on Azure App Service](/040-JavaOnAppService/README.md)
-- [Rock, Paper, Scissors, Boom!](/005-RockPaperScissorsBoom/README.md)
-- [App Modernization](/006-AppModernization/README.md)
-- [Microservices In Azure](/009-MicroservicesInAzure/README.md)
-- [Serverless](/015-Serverless/README.md)
-- [Migrating Applications To The Cloud](/016-AppMigration/README.md)
-- [Identity For Apps](/021-IdentityForApps/README.md)
-- [Linux Fundamentals](/020-LinuxFundamentals/README.md)
-- [FHIR Powered Healthcare](/027-FHIRPoweredHealthcare/README.md)
-- [Traffic Control with Dapr](/047-TrafficControlWithDapr/README.md)
-- [Azure Integration Services - API Management with Function Apps](/050-AIS-APIManagementwithFunctions/README.md)
-- [SAP on Azure: Application Modernization](/052-SAPAppModernization/README.md)
-- [Power Platform Basics](/058-PowerPlatformBasics/README.md)
+## Prerequisites
 
-## Operations
-- [Azure Monitoring](/007-AzureMonitoring/README.md)
-- [Datadog On Azure](/059-DatadogOnAzure/README.md)
-- [DevOps with GitHub](/031-DevOpsWithGitHub/README.md)
-- [DevOps with GitHub Actions](/044-DevOpswithGithubActions/README.md)
-- [Azure DevOps](/010-AzureDevOps/README.md)
-- [Open Source DevOps](/014-OSSDevOps/readme.md)
-- [MLOps from Scratch](/032-MLOpsFromScratch/README.md)
-- [Linux Fundamentals](/020-LinuxFundamentals/README.md)
-- [Data Governance with Microsoft Purview](/051-MicrosoftPurview/README.md)
-- [Sentinel Automated Response](/053-SentinelAutomatedResponse/README.md)
-- [Azure Load Testing](/054-AzureLoadTesting/README.md)
+- Your laptop: Win, MacOS or Linux OR A development machine that you have **administrator rights**.
+- Active Azure Subscription with **contributor level access or equivalent** to create or modify resources.
+- [Node.js 8+](https://www.npmjs.com/): Install latest long-term support (LTS) runtime environment for local workstation development. A package manager is also required. Node.js installs NPM in the 8.x version. The Azure SDK generally requires a minimum version of Node.js of 8.x. Azure hosting services, such as Azure App service, provides runtimes with more recent versions of Node.js. If you target a minimum of 8.x for local and remove development, your code should run successfully.
+- Visual Studio 2022 or Visual Studio Code
+- Azure development workload for Visual Studio 2022
+- Azure Functions and Web jobs tools
+- .NET 6 SDK
+- Any extentions required by your language of choice
 
-## Data & AI
-- [Cosmic Troubleshooting](/056-CosmicTroubleshooting/README.md)
-- [Data Governance with Microsoft Purview](/051-MicrosoftPurview/README.md)
-- [SQL Modernization and Migration](/043-SQLModernization/README.md)
-- [OSS Database Migration](/033-OSSDatabaseMigration/README.md)
-- [MLOps from Scratch](/032-MLOpsFromScratch/README.md)
-- [IoT Process Control at the Edge](/029-IoTEdge/README.md)
-- [BI 2 AI](/018-BI2AI/README.md)
-- [This Old Data Warehouse](/019-ThisOldDataWarehouse/README.md)
-- [Modern Data Warehouse - Covid 19](/038-MDWCovid19/README.md)
-- [Do You Even Synapse](/024-DoYouEvenSynapse/README.md)
-- [Incremental Synapse Pipelines](/048-IncrementalSynapsePipelines/README.md)
-- [Synapse Dedicated SQL Pool - Performance Best Practices](/049-SQLDedicatedPoolPerf/README.md)
-- [Bronze/Silver/Gold Using Synapse & Databricks](/060-SynapseAndDatabricks/README.md)
-- [Conversational AI](/030-ConversationalAI/README.md)
-- [Databricks/Intro to ML](/008-DatabricksIntroML/README.md)
-- [Intro To Azure AI](/002-IntroToAzureAI/README.md) - ARCHIVED
-- [Driving Miss Data](/003-DrivingMissData/README.md) - ARCHIVED
+*To setup Azure Functions on Visual studio Code, [follow this guide.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp)*
 
-## Microsoft Teams Platform
-- [Microsoft Teams: Make It Real](/034-MicrosoftTeams-MakeItReal/README.md)
+## Contributors
 
-## Smart Edge & Devices
-
-- [IoT Process Control at the Edge](/029-IoTEdge/README.md)
-- [Azure Arc enabled Kubernetes](/026-ArcEnabledKubernetes/readme.md)
-- [Azure Arc enabled servers](/025-ArcEnabledServers/readme.md)
-
-## Networking
-- [Advanced Networking](/028-AdvancedNetworking/README.md)
-- [Azure Networking with Hub & Spoke](/035-HubAndSpoke/README.md)
-- [Using BGP Networking for Hybrid Connectivity](/036-BGP/README.md)
-- [Azure Virtual WAN](/041-VirtualWAN/README.md)
-- [Azure Front Door](/017-FrontDoor/README.md)
-- [Azure Route Server](/057-AzureRouteServer/README.md)
-
-## SAP on Azure
-- [SAP on Azure](/042-SAPOnAzure/README.md)
-- [SAP on Azure: Application Modernization](/052-SAPAppModernization/README.md)
-
-## Power Platform
-- [Power Platform Basics](/058-PowerPlatformBasics/README.md)
-
-## Archived
-
-These hacks have been archived due to obsolescence or dependencies on sample code or data that is no longer available. If you are interested in updating these hacks, [contributions are welcome](CONTRIBUTING.md)! Please consider contributing to keep What The Hack up to date.
-
-- [Intro To Azure AI](/002-IntroToAzureAI/README.md)
-- [Driving Miss Data](/003-DrivingMissData/README.md)
-
-# License
-This repository is licensed under MIT license. More info can be found [here](https://github.com/Microsoft/WhatTheHack/blob/master/LICENSE).
+- Ali Sanjabi
+- Devanshi Joshi
+- Nikki Conley
+- Gwyneth Peña-Siguenza
