@@ -23,13 +23,16 @@ Set up your *local* environment:
     - [VS Code Todo Tree Extension](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)
     - Any extentions required by your language of choice
 
-*To setup Azure Functions on Visual Studio Code, [follow this guide.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp)*
+*To setup Azure Functions on Visual Studio Code, [follow this guide.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code)*
  
-Your coach will provide you with a `Resources.zip` file containing the source code and supporting files for this hack.  Uncompress the file on your local workstation. The file is available for download [here](https://aka.ms/serverless-september/wth/resources).
+Your coach will provide you with a `Resources.zip` file containing the source code and supporting files for this hack.  Uncompress the file on your local workstation. The file is available for download [here](https://github.com/3clouder/ServerlessSeptember/blob/master/015-Serverless/Student/Resources.zip).
 
 ## Success Criteria
 
-1. Verify your Visual Studio or Visual Studio Code installation has all of the necessary developer tools installed and available.
+1. Verify your Visual Studio or VS Code installation has all of the necessary developer tools installed and available.
 1. Verify you have the following folders locally wherever you unpacked the `Resources.zip` file:
     - `/Tollbooth`
     - `/license plates`
+1. Provide a screenshot from the Visual Studio or VS Code to the Proctor group as your proof artifact.
+
+Provide a screenshot from the Azure Portal to the Proctor group as your proof artifact.
