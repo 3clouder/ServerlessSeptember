@@ -25,9 +25,7 @@ Set up your *local* environment:
 
 *To setup Azure Functions on Visual Studio Code, [follow this guide.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp)*
  
-Your coach will provide you with a `Resources.zip` file containing the source code and supporting files for this hack.  Uncompress the file on your local workstation.
-
-To support this event, we are making the file available for download [here](https://aka.ms/serverless-september/wth/resources).
+Your coach will provide you with a `Resources.zip` file containing the source code and supporting files for this hack.  Uncompress the file on your local workstation. The file is available for download [here](https://aka.ms/serverless-september/wth/resources).
 
 ## Success Criteria
 
