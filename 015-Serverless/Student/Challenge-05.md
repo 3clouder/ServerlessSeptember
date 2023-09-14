@@ -21,7 +21,9 @@ In this challenge, you will deploy the VS project to Azure.
 
 ## Success Criteria
 
-1. The solution successfully deploys to Azure
+- The solution successfully deploys to Azure
+
+*Provide a screenshot from the Visual Studio terminal to the Proctor group as your proof artifact. Alternative methods (such as Azure CLI output) are acceptable.*
 
 ## Learning Resources
 

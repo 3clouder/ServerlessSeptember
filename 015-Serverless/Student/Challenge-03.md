@@ -53,7 +53,9 @@ In this challenge, you will provision a blob storage account using the Hot tier,
 
 ## Success Criteria
 
-1. You have at least 11 resources in your resource group in the same region (includes the 2 storage accounts associated to your function apps). Provide a screenshot from the Azure Portal to the Proctor group as your proof artifact.
+- You have at least 11 resources in your resource group in the same region (includes the 2 storage accounts associated to your function apps).
+
+*Provide a screenshot from the Azure Portal to the Proctor group as your proof artifact. Alternative methods (such as Azure CLI output) are acceptable.*
 
 ## Learning Resources
 

@@ -75,9 +75,11 @@ Create two new Azure Functions written in Node.js, using the Azure portal. These
 
 ## Success Criteria
 
-1. Both functions do not have any compillation errors
+1. Both functions do not have any compilation errors
 1. Both functions have event grid subscriptions
 1. Both functions have Cosmos DB as their outputs
+
+*Provide a screenshot from Visual Studio and Azure Portal to the Proctor group as your proof artifact. Alternative methods (such as Azure CLI output) are acceptable.*
 
 ## Learning Resources
 

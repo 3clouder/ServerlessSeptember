@@ -25,14 +25,13 @@ Set up your *local* environment:
 
 *To setup Azure Functions on Visual Studio Code, [follow this guide.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code)*
  
-Your coach will provide you with a `Resources.zip` file containing the source code and supporting files for this hack.  Uncompress the file on your local workstation. The file is available for download [here](https://github.com/3clouder/ServerlessSeptember/blob/master/015-Serverless/Student/Resources.zip).
+The zip file, `Resources.zip`, contains the source code and supporting files for this hack and is available in the Teams share channel (see "Files" tab at the top of the top-level group).  Uncompress the file on your local workstation. The file is available for download [here](https://github.com/3clouder/ServerlessSeptember/blob/master/015-Serverless/Student/Resources.zip).
 
 ## Success Criteria
 
-1. Verify your Visual Studio or VS Code installation has all of the necessary developer tools installed and available.
-1. Verify you have the following folders locally wherever you unpacked the `Resources.zip` file:
+1. Confirm that Visual Studio (2019 or 2022) or VS Code is installed and is capable of running .NET 6 or higher. **HINTS**: The Help > About screen will aid in demonstrating a successful Visual Studio installation. Use the "node -v" and "dotnet --version" commands in the Terminal > New Terminal panel for your Node.js and .NET versions, respectively.
+1. Confirm that you have the following folders locally wherever you unpacked the `Resources.zip` file:
     - `/Tollbooth`
     - `/license plates`
-1. Provide a screenshot from the Visual Studio or VS Code to the Proctor group as your proof artifact.
 
-Provide a screenshot from the Azure Portal to the Proctor group as your proof artifact.
+*Provide a screenshot from Visual Studio or VS Code to the Proctor group as your proof artifact.*

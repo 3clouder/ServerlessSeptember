@@ -59,8 +59,10 @@ await Send("queuePlateForManualCheckup", "TollBooth/CustomerService", data);
 
 ## Success Criteria
 
-1. The solution successfully builds
-2. The function app does not show any errors
+1. The solution successfully builds.
+1. The function app does not show any errors.
+
+*Provide a screenshot from the Visual Studio (or VS Code) terminal and/or debug panel to the Proctor group as your proof artifact.*
 
 ## Learning Resources
 
