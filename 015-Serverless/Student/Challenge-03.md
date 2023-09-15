@@ -13,7 +13,7 @@ In this challenge, you will provision a blob storage account using the Hot tier,
 **HINT:** _Record names and keys_
 
 1. In the Azure Portal, locate a resource group under your team name (e.g., "Team 1")
-   > ### Note
+   > #### Note
    > An Azure Subscription has been provisioned for this event and Azure Resource Groups have been defined. For this event, create all of your team's Azure resources in the Azure Resource Group corresponding to your team. 
 1. Create an "Azure Cosmos DB" service (from the Marketplace)
     * API: Azure Cosmos DB for NoSQL
