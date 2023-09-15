@@ -22,7 +22,9 @@ Application Insights can be integrated with Azure Function Apps to provide robus
 
 ## Success Criteria
 
-1. You have been able to successfully monitor the execution of the functions in Application Insights.
+- You have been able to successfully monitor the execution of the functions in Application Insights.
+
+*Provide a screenshot from the Azure Portal to the Proctor group as your proof artifact. Alternative methods (such as Azure CLI output) are acceptable.*
 
 ## Learning Resources
 

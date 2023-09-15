@@ -13,12 +13,14 @@ In this challenge, you will use the Azure Cosmos DB Data Explorer in the portal 
 ## Description
 
 1. In your Cosmos DB account, open the Data Explorer
-2. Examine the contents of the Processed and NeedsManualReview
+2. Examine the contents of the Processed and NeedsManualReview containers
 3. Create a new SQL Query of processed documents where exported = false
 
 ## Success Criteria
 
 1. You have been able to successfully query the Cosmos DB account
+
+*Provide a screenshot from Data Explorer to the Proctor group as your proof artifact. Alternative methods (such as Azure CLI output) are acceptable.*
 
 ## Learning Resources
 

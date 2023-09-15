@@ -47,6 +47,8 @@ In this challenge, you create a new Logic App for your data export workflow. Thi
 1. The first execution of the logic app has executed successfully and you have received an email from your Logic App
 2. The first execution of the logic app has executed successfully and you have data in your export container
 
+*Provide a screenshot from Data Explorer and your email client to the Proctor group as your proof artifact. Alternative methods (such as Azure CLI output) are acceptable.*
+
 ## Learning Resources
 
 - [What are Logic Apps?](https://docs.microsoft.com/azure/logic-apps/logic-apps-what-are-logic-apps)
