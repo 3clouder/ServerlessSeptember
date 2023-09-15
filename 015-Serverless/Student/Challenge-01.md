@@ -7,6 +7,8 @@
 - Your laptop: Win, MacOS or Linux OR A development machine that you have **administrator rights**.
 - Active Azure Subscription with **contributor level access or equivalent** to create or modify resources.
 
+   > #### Note
+   > An Azure Subscription has been provisioned for this event and Azure Resource Groups have been defined. For this event, create all of your team's Azure resources in the Azure Resource Group corresponding to your team (e.g., "Team 1"). 
 ## Introduction
 
 The first challenge is to setup an environment that will help you build the Tollbooth application and deploy it locally. We need to make sure everything is working before bringing it to Azure.
