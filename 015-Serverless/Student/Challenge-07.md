@@ -6,6 +6,9 @@
 
 Application Insights can be integrated with Azure Function Apps to provide robust monitoring for your functions. In this challenge, you will provision a new Application Insights account and configure your Function Apps to send telemetry to it.
 
+> #### Note
+   > An Azure Subscription has been provisioned for this event and Azure Resource Groups have been defined. For this event, create all of your team's Azure resources in the Azure Resource Group corresponding to your team.
+
 ## Description
 
 1. Create an Application Insights resource
