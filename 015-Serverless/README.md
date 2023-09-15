@@ -12,6 +12,9 @@ And don't forget there are coaches around you, just raise your hand at any time!
 
 ## Learning Objectives
 
+  > #### Note
+   > An Azure Subscription has been provisioned for this event and Azure Resource Groups have been defined. For this event, create all of your team's Azure resources in the Azure Resource Group corresponding to your team.
+
 In this hack, you will be solving the business problem of event driven scale for the Tollbooth Application.
 
 1. Provision an Azure Storage Blob Container to store vehicle photos.
