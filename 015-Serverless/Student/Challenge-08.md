@@ -6,6 +6,9 @@
 
 In this challenge, you create a new Logic App for your data export workflow. This Logic App will execute periodically and call your ExportLicensePlates function, then conditionally send an email if there were no records to export.
 
+   > #### Note
+   > An Azure Subscription has been provisioned for this event and Azure Resource Groups have been defined. For this event, create all of your team's Azure resources in the Azure Resource Group corresponding to your team. 
+
 ## Description
 
 1. Create a logic app
